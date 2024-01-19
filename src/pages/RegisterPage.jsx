@@ -11,7 +11,7 @@ const RegisterPage = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:3000/test");
+    axios.get("/test");
   };
 
   return (
