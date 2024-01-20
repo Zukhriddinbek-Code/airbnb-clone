@@ -9,9 +9,14 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
-    axios.post("/register", { name, email, password });
+    try {
+      await axios.post("/register", { name, email, password });
+      alert("Registration completed!");
+    } catch (e) {
+      alert("Registration failed! Please check your data!");
+    }
   };
 
   return (
