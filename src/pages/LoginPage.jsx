@@ -1,18 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const { setUser } = useContext(UserContext);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userInfo = await axios.post("/login", { email, password });
+      const { data } = await axios.post("/login", { email, password });
+      setUser(data);
       alert("Login successful!");
       setRedirect(true);
     } catch (e) {
